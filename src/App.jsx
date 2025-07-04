@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <p>test</p>
+      <p>3Dazzle.dk er under konstruktion</p>
     </>
   )
 }
