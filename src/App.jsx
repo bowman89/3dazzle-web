@@ -4,19 +4,24 @@ import MaintenancePage from './pages/MaintenancePage';
 import LandingPage from './pages/LandingPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import Navbar from './components/Navbar';
 
-// Se om path starter med /dev-
 const isSecret = window.location.pathname.startsWith('/dev-');
 
 function App() {
   return (
     <BrowserRouter>
       {isSecret ? (
-        <Routes>
-          <Route path="/dev-home" element={<LandingPage />} />
-          <Route path="/dev-about" element={<AboutPage />} />
-          <Route path="/dev-contact" element={<ContactPage />} />
-        </Routes>
+        <>
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/dev-home" element={<LandingPage />} />
+              <Route path="/dev-about" element={<AboutPage />} />
+              <Route path="/dev-contact" element={<ContactPage />} />
+            </Routes>
+          </main>
+        </>  
       ) : (
         <MaintenancePage />
       )}
