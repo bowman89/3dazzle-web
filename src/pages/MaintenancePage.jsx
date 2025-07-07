@@ -1,4 +1,4 @@
-function UnderUdvikling() {
+function MaintenancePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#F5F5F5]">
       <h1 className="text-4xl font-bold mb-4">Under udvikling</h1>
@@ -6,4 +6,4 @@ function UnderUdvikling() {
     </div>
   );
 }
-export default UnderUdvikling;
+export default MaintenancePage;

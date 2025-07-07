@@ -1,38 +1,25 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import LandingPage from './pages/LandingPage'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
-import UnderUdvikling from './pages/UnderUdvikling'
+// App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MaintenancePage from './pages/MaintenancePage';
+import LandingPage from './pages/LandingPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
-function AppContent() {
-  const location = useLocation();
-
-  // Hvis vi er på forsiden "/", så vis kun "UnderUdvikling" siden
-  if (location.pathname === "/") {
-    return <UnderUdvikling />;
-  }
-
-  // Ellers vis navbar + sider
-  return (
-    <>
-      <Navbar />
-      <main className="space-y-32">
-        <Routes>
-          <Route path="/home" element={<LandingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          {/* Tilføj flere sider her */}
-        </Routes>
-      </main>
-    </>
-  );
-}
+// Se om path starter med /dev-
+const isSecret = window.location.pathname.startsWith('/dev-');
 
 function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      {isSecret ? (
+        <Routes>
+          <Route path="/dev-home" element={<LandingPage />} />
+          <Route path="/dev-about" element={<AboutPage />} />
+          <Route path="/dev-contact" element={<ContactPage />} />
+        </Routes>
+      ) : (
+        <MaintenancePage />
+      )}
     </BrowserRouter>
   );
 }
