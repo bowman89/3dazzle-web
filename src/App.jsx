@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <main className="space-y-32">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           {/* Tilføj flere sider her */}
