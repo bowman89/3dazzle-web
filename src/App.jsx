@@ -1,12 +1,23 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import LandingPage from './pages/LandingPage'
+import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
+
 
 function App() {
-
   return (
-    <>
-      <p>3Dazzle.dk er under konstruktion</p>
-      <p>Tak for interessen</p>
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <main className="space-y-32">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Tilføj flere sider her */}
+        </Routes>
+      </main>
+    </BrowserRouter>
   )
 }
 

@@ -1,46 +1,159 @@
-git checkout main
-git pull                 # friskeste main
-git merge feature/...    # eller brug PR på GitHub
-# test lokalt hvis nødvendigt
-git push                 # skubber merged main
-git branch -d feature/...  # sletter lokal branch
-git push origin --delete feature/...  # sletter remote branch\```  
+# Projektoverblik & Workflow
+
+Denne fil guider dig gennem hele din udviklingsproces, trin for trin, som en helt nybegynder.
 
 ---
 
-## 6. DNS & Deployment (Vercel)
+## 1. Projektstruktur i VS Code
 
-- **DNS**: A-record `@` → `76.76.21.21`; CNAME `www` → `<vercel-dns-alias>`
-- **Deployment**: Vercel bygger `npm run build` → `dist/` og deployer til både `main` og dine custom domains.
+Når du åbner mappen `3dazzle-web` i VS Code, ser du typisk denne struktur:
 
-**Kun én host**: Efter du flytter DNS til Vercel, behøver du ikke FTP/Simple.com længere.
+```
+3dazzle-web/         ← projektets rodmappe
+├── public/           ← statiske filer (f.eks. favicon, `vite.svg`)
+├── src/              ← al din React-kode
+│   ├── App.jsx       ← hoved-komponenten: her starter din side
+│   ├── main.jsx      ← forbinder App.jsx med HTML-siden
+│   ├── assets/       ← grafik, billeder og logoer
+│   └── ...           ← andre komponenter og styles
+├── dist/             ← færdigbyggede filer (rediger aldrig her)
+├── package.json      ← beskriver dine afhængigheder og scripts
+├── vite.config.js    ← konfiguration for Vite
+└── WORKFLOW.md       ← denne guide
+```
+
+> **Tip:** Rediger kun i `src/`, når du laver kode-ændringer.
 
 ---
 
-## 7. Opsummering: Hurtig-git-kommandoer
+## 2. Ændringer i sider og komponenter
+
+Når du vil tilføje en ny side (fx en "Kontakt"-side) eller opdatere en eksisterende komponent (fx en header), følger du disse trin:
+
+1. **Opdater din "live" kode**
+
+   ```bash
+   git checkout main      # skift til den seneste live-version
+   git pull               # hent den nyeste kode fra GitHub
+   ```
+
+2. **Opret en midlertidig kopi, før du begynder**
+
+   ```bash
+   git checkout -b page/kontakt  # lav en kopi kaldet "page/kontakt"
+   ```
+
+   * Denne kopi er dit arbejdsområde, hvor du kan eksperimentere, uden at røre den stabile live-kode.
+   * Navngiv kopien efter, hvad du arbejder på: `page/nyt-afsnit`, `comp/footer`, osv.
+
+3. **Rediger side eller komponent**
+
+   * Opret eller opdatér filer i `src/`, f.eks.:
+
+     * `src/pages/Kontakt.jsx` for en ny side
+     * `src/components/Header.jsx` for et UI-element
+
+4. **Se resultat lokalt**
+
+   ```bash
+   npm run dev             # starter Vite på http://localhost:5173
+   ```
+
+   * Test din nye side eller komponent i browseren.
+
+5. **Gem dine ændringer**
+
+   ```bash
+   git add src/            # marker alle ændringer i src/
+   git commit -m "Tilføj Kontakt-side"
+   ```
+
+6. **Send din kopi til GitHub**
+
+   ```bash
+   git push -u origin page/kontakt
+   ```
+
+   * `-u` fortæller Git, at `page/kontakt` på GitHub hører til din lokale kopi.
+   * Fremover kan du blot skrive `git push`.
+
+---
+
+## 3. Gør det til "live" kode
+
+Når din nye side eller opdatering er klar, skal den samles med den virkelige, live-kode:
+
+1. **Gå tilbage til main**
+
+   ```bash
+   git checkout main
+   git pull               # hent de seneste ændringer igen
+   ```
+2. **Flet din kopi ind i main**
+
+   ```bash
+   git merge page/kontakt  # samler dine ændringer ind i main
+   ```
+3. **Send main til GitHub**
+
+   ```bash
+   git push                # live-koden opdateres på GitHub
+   ```
+
+> Når GitHub's `main` opdateres, kører Vercel automatisk en ny build og deploy.
+
+---
+
+## 4. Ryd op i kopier
+
+Efter du har samlet dine ændringer, kan du fjerne din midlertidige kopi:
 
 ```bash
-# Hent seneste kode
+git branch -d page/kontakt            # sletter den lokale kopi
+git push origin --delete page/kontakt # sletter kopien på GitHub
+```
+
+---
+
+## 5. Deployment og DNS (Vercel)
+
+* **Hvordan det virker**: Når du pusher til `main`, bygger Vercel med `npm run build` og deployer `dist/` til dit site.
+* **DNS-indstillinger**:
+
+  * A-record (`@`) peger på `76.76.21.21`
+  * CNAME (`www`) peger på dit Vercel-alias (kopier fra Vercel)
+
+> Herefter sker alt via Git + Vercel. Du behøver ikke længere FTP.
+
+---
+
+## 6. Hurtigt overblik: Kommandoer
+
+```bash
+# 1) Opdater live-kode
 git checkout main
 git pull
 
-# Start feature
-git checkout -b feature/ny-feature
+# 2) Lav ny kopi til arbejde (fx ny side)
+git checkout -b page/kontakt
 
-# Stage + commit
-git add .
-git commit -m "Beskriv ændring"
+# 3) Rediger src/ og test lokalt
+npm run dev
 
-# Push til GitHub
-git push -u origin feature/ny-feature  # første gang
-git push                             # efterfølgende
+# 4) Gem og send kopien
+git add src/
+git commit -m "Tilføj Kontakt-side"
+git push -u origin page/kontakt
 
-# Når klar til production
+# 5) Når klar til live:
 git checkout main
 git pull
-git merge feature/ny-feature
+git merge page/kontakt
 git push
 
-# Slet feature-branch
-git branch -d feature/ny-feature
-git push origin --delete feature/ny-feature
+# 6) Oprydning:
+git branch -d page/kontakt
+git push origin --delete page/kontakt
+```
+
+> Gem `WORKFLOW.md` i roden, så du altid har din guide klar. 🚀
