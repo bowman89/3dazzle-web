@@ -17,7 +17,7 @@ const products = [
 const CARD_WIDTH = 800;
 const CARD_HEIGHT = 400;
 const IMAGE_HEIGHT = 350;
-const CARD_GAP = 48; // Afstand mellem kort
+const CARD_GAP = 48;
 const VISIBLE_CARDS = 3;
 
 export default function ProductShowcase() {
