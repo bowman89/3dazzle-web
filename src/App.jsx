@@ -19,6 +19,7 @@ function App() {
               <Route path="/dev-home" element={<LandingPage />} />
               <Route path="/dev-about" element={<AboutPage />} />
               <Route path="/dev-contact" element={<ContactPage />} />
+              
             </Routes>
           </main>
         </>  

@@ -26,7 +26,7 @@ HEX         RGB                Tailwind                        Anvendelse       
 #FFFFFF     rgb(255,255,255)   text-[#FFFFFF]                  Tekst ovenpå mørk/gul knap               Sikrer høj læsbarhed ovenpå mørk (#201F21) eller gul (#DED600) baggrund.
 
 ------------------------------------------------------------------------------------------------------------------------
-#DED600     rgb(222,214,0)     bg-[#DED600], text-[#201F21]    CTA-knap, badges, highlight, accent      Til vigtige knapper, badges, highlights og elementer der skal fremhæves.
+#DED600     rgb(222,214,0)     bg-[#F0D700], text-[#201F21]    CTA-knap, badges, highlight, accent      Til vigtige knapper, badges, highlights og elementer der skal fremhæves.
 
 
 

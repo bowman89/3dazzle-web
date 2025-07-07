@@ -78,8 +78,11 @@ export default function ProductShowcase() {
         <button
           onClick={prev}
           disabled={isAnimating}
-          className="w-14 h-14 rounded-full border flex items-center justify-center hover:bg-gray-100 text-2xl transition absolute left-0 top-1/2 -translate-y-1/2 z-10"
-          style={{ top: '400px', left: '550px', position: 'absolute' }}
+          className="cursor-pointer w-14 h-14 rounded-full shadow-lg flex items-center justify-center 
+  hover:bg-[#F0D700] hover:border-0 hover:shadow-lg 
+  transition-all duration-300 ease-in-out text-2xl 
+  absolute right-0 top-1/2 -translate-y-1/2 z-10"
+          style={{ top: '400px', left: '650px', position: 'absolute' }}
           aria-label="Forrige"
         >←</button>
 
@@ -135,8 +138,11 @@ export default function ProductShowcase() {
         <button
           onClick={next}
           disabled={isAnimating}
-          className="w-14 h-14 rounded-full border flex items-center justify-center hover:bg-gray-100 text-2xl transition absolute right-0 top-1/2 -translate-y-1/2 z-10"
-          style={{ top: '400px',  right: '550px', position: 'absolute' }}
+          className="cursor-pointer w-14 h-14 rounded-full shadow-lg flex items-center justify-center 
+  hover:bg-[#F0D700] hover:border-0 hover:shadow-lg 
+  transition-all duration-300 ease-in-out text-2xl 
+  absolute right-0 top-1/2 -translate-y-1/2 z-10"
+          style={{ top: '400px',  right: '650px', position: 'absolute' }}
           aria-label="Næste"
         >→</button>
       </div>
