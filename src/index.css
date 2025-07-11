@@ -1,2 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+    --color-gold: #C19957;
+    --color-gold-hover: #af8946;
+    --color-gold-active: #ddc7a1;
+    --color-dark: #131414;
+}
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.menu-link {
+  @apply px-4 min-w-[110px] text-center transition-all duration-200;
+}
