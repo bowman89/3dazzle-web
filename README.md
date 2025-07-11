@@ -12,21 +12,21 @@ Currently, two official plugins are available:
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-## 3Dazzle UI Farvetema – Anvendelse & Beskrivelse
+### 3Dazzle UI Farvetema – Farve-navne, Tailwind-klasser & Anv
+| Navn        | Tailwind Klasse    | Anvendelse                        |
+|-------------|--------------------|-----------------------------------|
+| bg-main     | bg-gray-100        | Hoved-baggrund                    |
+| bg-card     | bg-white           | Cards og sektioner                |
 
-HEX         RGB                Tailwind                        Anvendelse                               Beskrivelse/Note
-------------------------------------------------------------------------------------------------------------------------
-#F5F5F5     rgb(245,245,245)   bg-[#F5F5F5]                    Hoved-baggrund                           Hele sidens baggrund. Let, venlig og moderne tone.
-#FFFFFF     rgb(255,255,255)   bg-[#FFFFFF]                    Cards og sektioner                       Sektioner, indholdsbokse, produktkort, overlays.
-#E0E0E0     rgb(224,224,224)   border-[#E0E0E0], bg-[#E0E0E0]  Divider-linjer, borders, labels          Til subtile linjer, skilleflader og badges.
+| border      | border-gray-200    | Divider-linjer, borders, labels   |
 
-------------------------------------------------------------------------------------------------------------------------
-#201F21     rgb(32,31,33)      text-[#201F21], bg-[#201F21]    Overskrifter, primær tekst, CTA-knap     Altid til H1, H2, H3, primær tekst på lys, mørk knap, ikoner.
-#5E5E5E     rgb(94,94,94)      text-[#5E5E5E]                  Brødtekst, metadata, sekundær            Bruges til brødtekst, små beskrivelser, metadata, sekundær tekst.
-#FFFFFF     rgb(255,255,255)   text-[#FFFFFF]                  Tekst ovenpå mørk/gul knap               Sikrer høj læsbarhed ovenpå mørk (#201F21) eller gul (#DED600) baggrund.
+| text-main   | zinc-800           | Primær tekst, overskrifter        |
+| text-muted  | text-zinc-700      | Sekundær tekst, metadata          |
+| text-light  | text-gray-600      | Brødtekst, ekstra metadata        |
+| text-white  | zinc-800           | Tekst ovenpå mørk/gul baggrund    |
 
-------------------------------------------------------------------------------------------------------------------------
-#DED600     rgb(222,214,0)     bg-[#F0D700], text-[#201F21]    CTA-knap, badges, highlight, accent      Til vigtige knapper, badges, highlights og elementer der skal fremhæves.
+| accent-cta  | bg-yellow-300      | CTA-knap, badges, highlight       |
+
 
 
 

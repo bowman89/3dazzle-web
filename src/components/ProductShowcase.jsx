@@ -14,7 +14,7 @@ const products = [
 ];
 
 // **Let styring her:**
-const CARD_WIDTH = 800;
+const CARD_WIDTH = 470;
 const CARD_HEIGHT = 400;
 const IMAGE_HEIGHT = 350;
 const CARD_GAP = 48;
@@ -72,16 +72,16 @@ export default function ProductShowcase() {
   return (
     <section className="py-8">
       <div
-        className="max-w-[1800px] mx-auto flex flex-col items-center relative"
+        className="flex flex-col items-center relative"
       >
         {/* PIL VENSTRE */}
         <button
           onClick={prev}
           disabled={isAnimating}
-          className="cursor-pointer w-14 h-14 rounded-full shadow-lg flex items-center justify-center 
-  hover:bg-[#F0D700] hover:border-0 hover:shadow-lg 
-  transition-all duration-300 ease-in-out text-2xl 
-  absolute right-0 top-1/2 -translate-y-1/2 z-10"
+          className="cursor-pointer w-14 h-14 rounded-full shadow-lg flex items-center justify-center
+          hover:bg-[#F0D700] hover:border-0 hover:shadow-lg 
+          transition-all duration-300 ease-in-out text-2xl 
+          absolute right-0 top-1/2 -translate-y-1/2 z-10"
           style={{ top: '400px', left: '650px', position: 'absolute' }}
           aria-label="Forrige"
         >←</button>

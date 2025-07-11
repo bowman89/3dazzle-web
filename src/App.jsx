@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import Navbar from './components/Navbar';
 
+
 const isSecret = window.location.pathname.startsWith('/dev-');
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       {isSecret ? (
         <>
           <Navbar />
-          <main>
+          <main className="max-w-[1920px] mx-auto px-4 md:px-8 lg:px-16">
             <Routes>
               <Route path="/dev-home" element={<LandingPage />} />
               <Route path="/dev-about" element={<AboutPage />} />

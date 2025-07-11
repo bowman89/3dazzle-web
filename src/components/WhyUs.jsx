@@ -30,23 +30,23 @@ const steps = [
 
 function WhyUs() {
     return(
-        <section className="max-w-[1600px] mx-auto my-16 p-16">
+        <section className="max-w-[1600px] mx-auto my-16 py-16"> 
             <h2 className="text-4xl font-bold text-center mb-8">Så nemt bestiller du hos 3Dazzle
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-120 text-center justify-items-center">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center justify-items-center"> 
                 {steps.map((step, idx) => (
-                    <div className="w-100 h-100 cursor-pointer rounded-xl hover:shadow-2xl hover:bg-[#EED600] p-4 flex flex-col justify-center 
+                    <div className="w-80 h-80 cursor-pointer rounded-xl hover:shadow-2xl bg-zinc-200 hover:bg-[#EED600] p-4 flex flex-col justify-center 
                     items-center shadow transition-transform duration-400 ease-in-out hover:scale-105" 
                          key={idx}>
                         <step.icon className="mx-auto mb-4 w-24 h-24 text-[#000]" />
                         <div className="font-semibold mb-2 text-2xl">{step.title}</div>
                         <div className="text-lg text-[#5E5E5E]">{step.text}</div>
-                        
                     </div>
                 ))}
             </div>
         </section>
     )
 }
+
 
 export default WhyUs;

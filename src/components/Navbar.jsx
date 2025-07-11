@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
+import NavLogo from "../assets/3DAZZLE-SVG.svg?react";
 
 function Navbar() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 text-[#5E5E5E] bg-[#F5F5f5] body-font p-5 shadow ">
-      <div className="flex items-center justify-between w-full relative">
-        <Link to="/" className="flex title-font font-medium items-center text-[#1C1C1C] mb-4 md:mb-0">
-          <span className="ml-3 text-xl">3Dazzle</span>
+    <header className="fixed top-0 left-0 w-full z-50 text-gray-600 bg-[#F5F5f5] body-font p-5 shadow">
+      <div className="flex items-center justify-between max-w-[1920px] mx-auto relative px-4 md:px-8 lg:px-16">
+
+        {/* LOGO TILFØJET HER */}
+        <Link to="/" className="flex items-center title-font font-medium text-zinc-800">
+          <NavLogo className="h-10 w-auto" />
         </Link>
 
         {/* Center menu */}
         <nav className="absolute left-1/2 transform -translate-x-1/2 flex gap-6">
-          
+        
           {/* Kategorier */}
           <div className="relative group">
             <a className="hover:text-[#1C1C1C] hover:underline cursor-pointer">Kategorier ▾</a>
