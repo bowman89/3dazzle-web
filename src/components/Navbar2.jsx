@@ -35,7 +35,7 @@ function Navbar2() {
     <header className="fixed top-0 left-0 w-full z-50 text-white bg-dark body-font p-5 shadow">
       <div className="flex items-center justify-between max-w-[1920px] h-[50px] mx-auto relative px-4 md:px-8 lg:px-16">
         {/* LOGO TILFØJET HER */}
-        <Link to="/" className="flex items-center title-font font-medium text-white">
+        <Link to="/dev-home2" className="flex items-center title-font font-medium text-white">
           <NavLogo className="h-10 w-auto" />
         </Link>
 

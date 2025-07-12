@@ -1,9 +1,12 @@
-function Home() {
-    return(
-        <>
-        <section className="h-80 bg-cta-gold"></section>
-        </>
-    )
-}
+import HeroSection2 from "../components/heroSection2";
+import SectionTwo from "../components/SectionTwo";
 
-export default Home
+function Home() {
+  return (
+    <>
+      <HeroSection2 />
+      <SectionTwo />
+    </>
+  );
+}
+export default Home;
