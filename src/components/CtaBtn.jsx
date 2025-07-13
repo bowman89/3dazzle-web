@@ -15,6 +15,7 @@ export default function CtaBtn({ children, onClick, className = "" }) {
       min-h-[50px]
       transition-all duration-150 ease-in-out
       shadow
+      cursor-pointer
       hover:bg-gold-hover hover:border-gold-hover
       focus:outline-none focus:ring-2 focus:ring-gold
       ${className}`}

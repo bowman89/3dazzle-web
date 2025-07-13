@@ -5,6 +5,7 @@
     --color-gold-hover: #af8946;
     --color-gold-active: #ddc7a1;
     --color-dark: #131414;
+    --color-dark-gray: #1D1F1F;
 }
 
 @layer base {

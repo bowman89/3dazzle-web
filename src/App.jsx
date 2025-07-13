@@ -15,7 +15,7 @@ function App() {
       {isSecret ? (
         <>
           <Navbar2 />
-          <main className="max-w-[1920px]">
+          <main className="">
             <Routes>
               <Route path="/dev-home2" element={<Home />} />
               <Route path="/dev-home" element={<LandingPage />} />
