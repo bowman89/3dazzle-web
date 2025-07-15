@@ -81,6 +81,8 @@ export default function NameplateForm() {
       >
         {loading ? 'Genererer...' : 'Download ZIP med STL-filer'}
       </button>
+
+      
       <div style={{ fontSize: 15, color: status.includes('Download') ? 'green' : 'crimson', minHeight: 24 }}>
         {status}
       </div>

@@ -1,4 +1,5 @@
 // src/generateStl.js
+
 import { writeFileSync, readFileSync } from 'fs';
 import path from 'path';
 import * as THREE from 'three';
@@ -6,18 +7,19 @@ import { STLExporter } from 'three/examples/jsm/exporters/STLExporter.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-const fontJson = JSON.parse(readFileSync(path.resolve('./src/fonts/DancingScript-Bold.json'), 'utf8'));
+// Load din konverterede JSON font
+const fontJson = JSON.parse(readFileSync(path.resolve('./src/fonts/Pacifico_Regular.json'), 'utf8'));
 const font = new FontLoader().parse(fontJson);
 
-const targetHeight = 30;     // Y-dimension (tekst-højde i mm)
-const thickness = 5;         // Z-dimension (tykkelse i mm)
-const baseFontSize = 10;
+const targetHeight = 30;     // Højde på teksten (mm)
+const thickness = 5;         // Tykkelse (mm)
+const baseFontSize = 10;     // Base font size for skalering
 
-export function generateStl(name, returnString = false) {
+export function generateStl(name, returnString = false, outputPath = null) {
   const textGeometry = new TextGeometry(name, {
     font: font,
     size: baseFontSize,
-    height: 1, // midlertidigt, vi skalerer Z bagefter!
+    height: 1, // Skalér z bagefter!
     curveSegments: 12,
     bevelEnabled: false
   });
@@ -43,19 +45,19 @@ export function generateStl(name, returnString = false) {
   const stlString = exporter.parse(mesh);
 
   if (returnString) {
-    return stlString; // Returnér STL som string (bruges af Express/server)
+    return stlString; // Returnér STL som string
   } else {
-    writeFileSync(`${name}.stl`, stlString);
-    console.log(`STL genereret! (${name}.stl)`);
+    const fileName = outputPath || `${name}.stl`;
+    writeFileSync(outputPath || fileName, stlString);
+    console.log(`STL genereret! (${fileName})`);
   }
 }
 
-// --- Til manuel test i terminal ---
-// Denne blok kører kun, hvis du kører "node src/generateStl.js" direkte i terminalen
-// --- Til manuel test i terminal ---
-// eslint-disable-next-line no-undef
-if (typeof process !== "undefined" && process.argv && import.meta.url.endsWith(process.argv[1])) {
-  const names = ['Mille', 'Oliver'];
+
+// --- Kør scriptet direkte i terminalen (batch)
+// Eksportér STL for alle navne herunder
+if (typeof process !== "undefined" && typeof process.argv !== "undefined") {
+  const names = ['Thomas', 'Maria', 'Jakob']; // Skriv alle navne her
   names.forEach(name => generateStl(name));
 }
 

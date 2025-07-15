@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@flatten-js/core": "^1.6.2",
     "@jscad/io": "^2.4.11",
     "@jscad/modeling": "^2.12.5",
     "@jscad/openjscad": "^1.6.1",
     "@tailwindcss/vite": "^4.1.11",
     "archiver": "^7.0.1",
+    "cors": "^2.8.5",
     "daisyui": "^5.0.43",
     "express": "^5.1.0",
     "file-saver": "^2.0.5",

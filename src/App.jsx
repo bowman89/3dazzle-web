@@ -7,6 +7,7 @@ import ContactPage from './pages/ContactPage';
 import Navbar2 from './components/Navbar2';
 import Home from './pages/Home';
 
+
 const isSecret = window.location.pathname.startsWith('/dev-');
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
               <Route path="/dev-home" element={<LandingPage />} />
               <Route path="/dev-about" element={<AboutPage />} />
               <Route path="/dev-contact" element={<ContactPage />} />
+
+
               
             </Routes>
           </main>

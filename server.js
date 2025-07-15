@@ -1,25 +1,42 @@
 import express from 'express';
+import cors from 'cors';
+import fs from 'fs';
 import archiver from 'archiver';
 import { generateStl } from './src/generateStl.js';
+import path from 'path';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-app.post('/api/generate-stl', async (req, res) => {
-  const { names } = req.body;
+// ---------- nyt endpoint -----------------
+app.post('/api/generate-zip', async (req, res) => {
+  const names = (req.body.names || []).map(n => n.trim()).filter(Boolean);
+  if (!names.length) return res.status(400).json({ error: 'No names' });
+
+  const tmpDir = './tmp_stl';
+  fs.mkdirSync(tmpDir, { recursive: true });
+  const files = [];
+
+  names.forEach(name => {
+    const filePath = path.join(tmpDir, `${name}.stl`);
+    generateStl(name, false, filePath);
+    files.push({ name, path: filePath });
+  });
 
   res.setHeader('Content-Type', 'application/zip');
   res.setHeader('Content-Disposition', 'attachment; filename=navneskilte.zip');
 
-  const archive = archiver('zip', { zlib: { level: 9 } });
-  archive.pipe(res);
+  const zip = archiver('zip');
+  zip.pipe(res);
+  files.forEach(f => zip.file(f.path, { name: `${f.name}.stl` }));
+  zip.finalize();
 
-  names.forEach(name => {
-    const stl = generateStl(name, true); // Få STL-string retur
-    archive.append(stl, { name: `${name}.stl` });
+  zip.on('end', () => {
+    files.forEach(f => fs.unlinkSync(f.path));
+    fs.rmSync(tmpDir, { recursive: true, force: true });
   });
-
-  await archive.finalize();
 });
+// -----------------------------------------
 
-app.listen(3001, () => console.log('Server kører på http://localhost:3001'));
+app.listen(3001, () => console.log('STL‑backend kører på http://localhost:3001'));
