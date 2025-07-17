@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImage from "../assets/hero-image.jpeg";
 import CtaBtn from "../components/CtaBtn";
 
@@ -23,9 +24,11 @@ function HeroSection2() {
         <h2 className="mb-6 text-2xl font-semibold text-white">
           Gør festen, gaven og hverdagen mere personlig med 3D print
         </h2>
-        <CtaBtn>
-          Se Produkter
-        </CtaBtn>
+        <Link to="/dev-produkter">
+          <CtaBtn>
+            Se Produkter
+          </CtaBtn>
+        </Link>
       </div>
     </section>
   );

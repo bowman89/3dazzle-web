@@ -67,7 +67,7 @@ function Navbar2() {
           {/* Dropdown-content fra productGroups */}
           {productGroups.map((group) => (
             <div key={group.title} className="min-w-[200px]">
-              <h4 className="font-semibold text-xs uppercase mb-3 tracking-wide border-b border-gray-300">{group.title}</h4>
+              <h4 className="font-semibold !text-xs uppercase mb-3 tracking-wide border-b border-gray-300">{group.title}</h4>
               <ul>
                 {group.items.map((item) => (
                   <li key={item.to}>

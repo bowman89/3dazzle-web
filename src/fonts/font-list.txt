@@ -1,0 +1,20 @@
+Type 1:   Aamonoline.ttf -
+Type 2:   Autolova.ttf
+Type 3:   Bhineka.ttf -
+Type 4:   Callheart.ttf - 
+Type 5:   DancingScript-Bold.ttf -
+Type 6:   FREEBSC_.ttf - 
+Type 7:   FREEBSCA.ttf - 
+Type 8:   Kupika.ttf
+Type 9:   Lobster 1.4.otf - 
+Type 10:  Magiera Script.ttf - 
+Type 11:  Mayonice.ttf - 
+Type 12:  master_of_break.ttf
+Type 13:  Pacifico-Regular.ttf
+Type 14:  raustila-Regular.ttf
+Type 15:  Retrock.ttf
+Type 16:  SCRIPTALT.ttf
+Type 17:  SCRIPTIN.ttf
+Type 18:  Tegak Bersambung_IWK.ttf
+Type 19:  Thesignature.ttf
+Type 20:  Viksi Script.ttf

@@ -15,7 +15,7 @@ function Home() {
       <SectionTwo />
       <SectionThree />
       <SectionFour />
-      {/*  <NameplateForm />*/}
+      {/* <NameplateGenerator />*/}
 
     </>
   );
