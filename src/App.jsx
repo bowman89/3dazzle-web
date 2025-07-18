@@ -10,6 +10,7 @@ import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import Editor from './pages/Editor';
 import AllCategoriesPage from './pages/AllCategoriesPage';
+import ProductListPage from './pages/ProductListPage';
 
 
 const isSecret = window.location.pathname.startsWith('/dev-');
@@ -30,6 +31,7 @@ function App() {
               <Route path="/produkt/:productId" element={<ProductPage />} />
               <Route path="/dev-editor" element={<Editor />} />
               <Route path="/dev-produkter" element={<AllCategoriesPage />} />
+              <Route path="/dev-alle-produkter" element={<ProductListPage />} />
 
               
               
