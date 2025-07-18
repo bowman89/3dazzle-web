@@ -6,6 +6,7 @@
     --color-gold-active: #ddc7a1;
     --color-dark: #131414;
     --color-dark-gray: #1D1F1F;
+    --color-muted: #D5D3D1;
 }
 
 @layer base {

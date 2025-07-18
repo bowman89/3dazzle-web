@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function CategoryCard({ category }) {
   return (
-    <Link to={`/produkter/${category.slug}`} className="group h-full block">
+    <Link to={`/dev-category/${category.slug}`} className="group h-full block">
       <div className="bg-dark shadow-lg rounded flex flex-col h-full transition-transform duration-300 hover:scale-105">
 
         <div className="w-full h-60 overflow-hidden rounded-t">

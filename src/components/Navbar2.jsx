@@ -88,7 +88,7 @@ function Navbar2() {
     
     {/* Om */}
     <NavLink
-      to="/dev-om2"
+      to="/dev-about"
       className={({ isActive }) =>
         navLinkClasses({ isActive, special: false })
       }

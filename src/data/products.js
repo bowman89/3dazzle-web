@@ -17,7 +17,7 @@ export const products = [
     // evt. flere felter ...
   },
   {
-    id: "cb-01",
+    id: "cb-02",
     name: "Bordkort Skripty",
     category: "bordkort",
     price: 35,
@@ -34,7 +34,7 @@ export const products = [
     // evt. flere felter ...
   },
   {
-    id: "cb-01",
+    id: "cb-03",
     name: "Bordkort Skripty",
     category: "bordkort",
     price: 35,
@@ -51,7 +51,7 @@ export const products = [
     // evt. flere felter ...
   },
   {
-    id: "cb-01",
+    id: "cb-04",
     name: "Bordkort Skripty",
     category: "bordkort",
     price: 35,
@@ -68,12 +68,12 @@ export const products = [
     // evt. flere felter ...
   },
   {
-    id: "cb-01",
-    name: "Bordkort Skripty",
+    id: "ph-05",
+    name: "Penneholder",
     category: "kontor",
     price: 35,
     image: "/img/img-dummy.png",
-    nameInput: true,
+    nameInput: false,
     description: "Skab et flot og unikt udtryk til din fest med 3D-printede bordkort...",
     details: [
       "Materiale: PLA-plast, miljøvenlig",
@@ -85,12 +85,12 @@ export const products = [
     // evt. flere felter ...
   },
   {
-    id: "cb-01",
-    name: "Bordkort Skripty",
+    id: "ph-06",
+    name: "Visitkort holder",
     category: "kontor",
     price: 35,
     image: "/img/img-dummy.png",
-    nameInput: true,
+    nameInput: false,
     description: "Skab et flot og unikt udtryk til din fest med 3D-printede bordkort...",
     details: [
       "Materiale: PLA-plast, miljøvenlig",
