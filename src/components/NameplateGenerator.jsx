@@ -48,9 +48,40 @@ const FONTS = [
   { name: "Type 20", path: type20Font }
 ];
 
+// ---------- Letter-spacing helper med uppercase og space support ----------
+function buildCustomSpacedPath(
+  text,
+  font,
+  fontSize,
+  startX,
+  startY,
+  generalSpacing = 0,
+  uppercaseSpacing = 0,
+  spaceSpacing = -20
+) {
+  let x = startX;
+  let pathData = "";
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const glyph = font.charToGlyph(char);
+    const charPath = glyph.getPath(x, startY, fontSize).toPathData();
+    pathData += charPath;
+
+    // Ekstra spacing logik
+    let extraSpacing = 0;
+    if (char === char.toUpperCase() && /[A-ZÆØÅ]/.test(char)) {
+      extraSpacing = uppercaseSpacing;
+    }
+    if (char === " ") {
+      extraSpacing = spaceSpacing;
+    }
+    x += glyph.advanceWidth * (fontSize / font.unitsPerEm) + generalSpacing + extraSpacing;
+  }
+  return pathData;
+}
 
 export default function NameplateGenerator() {
-  const [names, setNames] = useState("Thomas\nMaria\nJakob");
+  const [names, setNames] = useState("Thomas\nMaria\nJens Peder");
   const [fontIndex, setFontIndex] = useState(0);
   const [fontData, setFontData] = useState(null);
 
@@ -63,7 +94,7 @@ export default function NameplateGenerator() {
 
   const nameList = names.split("\n").map(n => n.trim()).filter(Boolean);
 
-  /* download ZIP med alle STL'er  */
+  // download ZIP med alle STL'er (samme som før)
   async function downloadAllStl() {
     const namesArr = names
       .split("\n")
@@ -88,7 +119,7 @@ export default function NameplateGenerator() {
   }
 
   return (
-    <div style={{ padding: 24, maxWidth: 1200 }}>
+    <div style={{ padding: 24, maxWidth: 1300 }}>
       <h2>Navneskilt Generator</h2>
 
       <label>
@@ -121,7 +152,13 @@ export default function NameplateGenerator() {
       </div>
 
       {/* previews */}
-      <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginTop: 24 }}>
+      <div style={{
+        display: "flex",
+        gap: 32,
+        flexWrap: "wrap",
+        marginTop: 24,
+        alignItems: "flex-start"
+      }}>
         {nameList.map((name, idx) => (
           <SVGPreview
             key={name + idx}
@@ -135,43 +172,128 @@ export default function NameplateGenerator() {
   );
 }
 
-/* ---------- helpers ---------- */
-
+// ----------- SVGPreview med 3 slags letterSpacing og bred boks -----------
 function SVGPreview({ name, fontData, fontName }) {
+  const [letterSpacing, setLetterSpacing] = useState(0);
+  const [uppercaseSpacing, setUppercaseSpacing] = useState(0);
+  const [spaceSpacing, setSpaceSpacing] = useState(-20);
+
   if (!fontData) return <div>Loader font…</div>;
 
-  const fs = 100;           // Fontstørrelse
-  const padding = 40;       // Luft til siderne/top/bund
+  const fs = 100;
+  const padding = 40;
 
-  // Automatisk bredde baseret på navnet
-  const nameWidth = fontData.getAdvanceWidth(name, fs);
+  // Udregn bredde: bogstav for bogstav inkl. alle spacings
+  let x = 0;
+  for (let i = 0; i < name.length; i++) {
+    const char = name[i];
+    const glyph = fontData.charToGlyph(char);
+    let extraSpacing = 0;
+    if (char === char.toUpperCase() && /[A-ZÆØÅ]/.test(char)) {
+      extraSpacing = uppercaseSpacing;
+    }
+    if (char === " ") {
+      extraSpacing = spaceSpacing;
+    }
+    x += glyph.advanceWidth * (fs / fontData.unitsPerEm) + letterSpacing + extraSpacing;
+  }
+  const nameWidth = x - letterSpacing;
   const svgWidth = nameWidth + padding * 2;
-  const svgHeight = 180; // Fast højde – ret hvis du vil
+  const svgHeight = 180;
 
-  // Brug ét samlet path for hele navnet
-  const d = fontData.getPath(name, padding, fs + 30, fs).toPathData();
+  // Brug custom path generation med alle spacings
+  const d = buildCustomSpacedPath(
+    name,
+    fontData,
+    fs,
+    padding,
+    fs + 30,
+    letterSpacing,
+    uppercaseSpacing,
+    spaceSpacing
+  );
 
   return (
-    <div style={{
-      textAlign: "center",
-      border: "1px solid #eee",
-      padding: 12,
-      borderRadius: 8,
-      minWidth: 200
-    }}>
-      {/* Her retter du størrelsen på SVG'en */}
-      <svg width={svgWidth} height={svgHeight}>
-        <path d={d} fill="#000" />
-      </svg>
-      <br />
-      <button onClick={() => downloadSVG(name, d, svgWidth, svgHeight, fontName)}>
+    <div
+      style={{
+        textAlign: "center",
+        border: "1px solid #eee",
+        padding: 16,
+        borderRadius: 10,
+        width: "100%",
+        maxWidth: 700,        // boksene er store nok til de fleste navne
+        minWidth: 320,
+        overflowX: "auto",
+        marginBottom: 16,
+        background: "#fff",
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}
+    >
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <svg
+          width={svgWidth}
+          height={svgHeight}
+          style={{
+            display: "block",
+            margin: "0 auto"
+          }}
+        >
+          <path d={d} fill="#000" />
+        </svg>
+      </div>
+      <div style={{ marginTop: 8, width: "100%" }}>
+        <label>
+          Bogstavafstand (alle):&nbsp;
+          <input
+            type="range"
+            min={-30}
+            max={50}
+            value={letterSpacing}
+            onChange={e => setLetterSpacing(Number(e.target.value))}
+            style={{ width: 140, verticalAlign: "middle" }}
+          />
+          <span style={{ marginLeft: 8 }}>{letterSpacing} px</span>
+        </label>
+        <br />
+        <label>
+          Ekstra på store bogstaver:&nbsp;
+          <input
+            type="range"
+            min={-30}
+            max={50}
+            value={uppercaseSpacing}
+            onChange={e => setUppercaseSpacing(Number(e.target.value))}
+            style={{ width: 140, verticalAlign: "middle" }}
+          />
+          <span style={{ marginLeft: 8 }}>{uppercaseSpacing} px</span>
+        </label>
+        <br />
+        <label>
+          Ekstra på mellemrum:&nbsp;
+          <input
+            type="range"
+            min={-60}
+            max={50}
+            value={spaceSpacing}
+            onChange={e => setSpaceSpacing(Number(e.target.value))}
+            style={{ width: 140, verticalAlign: "middle" }}
+          />
+          <span style={{ marginLeft: 8 }}>{spaceSpacing} px</span>
+        </label>
+      </div>
+      <button
+        style={{ marginTop: 8 }}
+        onClick={() => downloadSVG(name, d, svgWidth, svgHeight, fontName)}
+      >
         Download SVG
       </button>
-      <div>{name}</div>
+      <div style={{ marginTop: 6, wordBreak: "break-all" }}>{name}</div>
     </div>
   );
 }
-
 
 function downloadSVG(name, d, w, h, fontName) {
   const svg = `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
