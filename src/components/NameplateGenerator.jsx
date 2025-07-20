@@ -172,7 +172,7 @@ export default function NameplateGenerator() {
   );
 }
 
-// ----------- SVGPreview med 3 slags letterSpacing og bred boks -----------
+// ----------- SVGPreview med reset-knap til hver slider -----------
 function SVGPreview({ name, fontData, fontName }) {
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [uppercaseSpacing, setUppercaseSpacing] = useState(0);
@@ -221,7 +221,7 @@ function SVGPreview({ name, fontData, fontName }) {
         padding: 16,
         borderRadius: 10,
         width: "100%",
-        maxWidth: 700,        // boksene er store nok til de fleste navne
+        maxWidth: 700,
         minWidth: 320,
         overflowX: "auto",
         marginBottom: 16,
@@ -245,7 +245,7 @@ function SVGPreview({ name, fontData, fontName }) {
         </svg>
       </div>
       <div style={{ marginTop: 8, width: "100%" }}>
-        <label>
+        <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
           Bogstavafstand (alle):&nbsp;
           <input
             type="range"
@@ -255,10 +255,27 @@ function SVGPreview({ name, fontData, fontName }) {
             onChange={e => setLetterSpacing(Number(e.target.value))}
             style={{ width: 140, verticalAlign: "middle" }}
           />
-          <span style={{ marginLeft: 8 }}>{letterSpacing} px</span>
+          <span>{letterSpacing} px</span>
+          <button
+            type="button"
+            style={{
+              marginLeft: 8,
+              padding: "0 10px",
+              height: 28,
+              fontSize: 13,
+              background: "#f2f2f2",
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              cursor: "pointer"
+            }}
+            onClick={() => setLetterSpacing(0)}
+            title="Reset"
+          >
+            Nulstil
+          </button>
         </label>
         <br />
-        <label>
+        <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
           Ekstra på store bogstaver:&nbsp;
           <input
             type="range"
@@ -268,10 +285,27 @@ function SVGPreview({ name, fontData, fontName }) {
             onChange={e => setUppercaseSpacing(Number(e.target.value))}
             style={{ width: 140, verticalAlign: "middle" }}
           />
-          <span style={{ marginLeft: 8 }}>{uppercaseSpacing} px</span>
+          <span>{uppercaseSpacing} px</span>
+          <button
+            type="button"
+            style={{
+              marginLeft: 8,
+              padding: "0 10px",
+              height: 28,
+              fontSize: 13,
+              background: "#f2f2f2",
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              cursor: "pointer"
+            }}
+            onClick={() => setUppercaseSpacing(0)}
+            title="Reset"
+          >
+            Nulstil
+          </button>
         </label>
         <br />
-        <label>
+        <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
           Ekstra på mellemrum:&nbsp;
           <input
             type="range"
@@ -281,7 +315,24 @@ function SVGPreview({ name, fontData, fontName }) {
             onChange={e => setSpaceSpacing(Number(e.target.value))}
             style={{ width: 140, verticalAlign: "middle" }}
           />
-          <span style={{ marginLeft: 8 }}>{spaceSpacing} px</span>
+          <span>{spaceSpacing} px</span>
+          <button
+            type="button"
+            style={{
+              marginLeft: 8,
+              padding: "0 10px",
+              height: 28,
+              fontSize: 13,
+              background: "#f2f2f2",
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              cursor: "pointer"
+            }}
+            onClick={() => setSpaceSpacing(-20)}
+            title="Reset"
+          >
+            Nulstil
+          </button>
         </label>
       </div>
       <button
